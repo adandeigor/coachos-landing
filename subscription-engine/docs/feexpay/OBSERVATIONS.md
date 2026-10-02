@@ -21,3 +21,9 @@ Constats mesurés, pas déduits de la doc. Hôte : https://api-v2.feexpay.me
 - Même `401 UNAUTHORIZED`. Le défaut n'est donc pas dans le script du sondage.
 - Collection Postman officielle ajoutée (`feexpay-api-rest-payin-payout.postman_collection.json`) : auth Bearer, chemins payin `mtn`, `moov`, `celtiis_bj`, `coris`, `moov_ci`... confirmés.
 - Collection : incohérence interne repérée - le payout « FREE SN » pointe vers `/wave_sn` dans son chemin détaillé (`path`) mais `free_sn` dans son `raw`. Sans effet (pas de payout).
+
+## 2026-10-02 - Troisième essai (nouveau compte annoncé, même clé renvoyée)
+- Chaque entrée de `probe/logs/calls.jsonl` porte désormais `mode` (sandbox), `baseUrl`, `shop` et `keyHint` (clé masquée).
+- Clé `test_…uhn` (45 car.) : 401 UNAUTHORIZED.
+- Même suffixe avec préfixe `fp_` (43 car.), à la demande d'Igor : 401 UNAUTHORIZED. Variante non conservée.
+- Conclusion provisoire : la chaîne reçue n'est pas une clé Bearer valide pour `api-v2.feexpay.me`, avec ou sans préfixe. La clé du nouveau compte n'a pas été reçue (même chaîne que l'ancien compte).

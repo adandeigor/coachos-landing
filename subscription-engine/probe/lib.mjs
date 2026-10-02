@@ -13,9 +13,9 @@ export function loadEnv() {
   }
   if (env.PAYMENT_ENV !== 'sandbox') throw new Error('PAYMENT_ENV doit valoir sandbox');
   // Garde-fou provisoire de la phase 1 : la clé de test observée commence par "test_".
-  if (!env.FEEXPAY_API_KEY?.startsWith('test_')) {
-    throw new Error('Clé refusée : le sondage n\'accepte que la clé de Test (préfixe test_).');
-  }
+  // Le préfixe réel de la clé de Test est en cours d'observation (test_ ou fp_) ; la sécurité repose sur
+  // le fichier .env.sandbox qui ne contient que la clé de Test.
+  if (!/^(test_|fp_)/.test(env.FEEXPAY_API_KEY ?? '')) throw new Error('Préfixe de clé inattendu (test_ ou fp_).');
   return env;
 }
 
@@ -28,7 +28,9 @@ export async function call(env, method, path, body) {
   });
   const text = await res.text();
   let json; try { json = JSON.parse(text); } catch { json = null; }
-  const out = { method, path, httpStatus: res.status, ms: Date.now() - t0,
+  const k = env.FEEXPAY_API_KEY;
+  const out = { mode: env.PAYMENT_ENV, baseUrl: env.FEEXPAY_BASE_URL, shop: env.FEEXPAY_SHOP,
+    keyHint: `${k.slice(0, 5)}…${k.slice(-3)} (${k.length} car.)`, method, path, httpStatus: res.status, ms: Date.now() - t0,
     headers: Object.fromEntries(res.headers), body: json ?? text };
   mkdirSync(join(root, 'probe/logs'), { recursive: true });
   appendFileSync(join(root, 'probe/logs/calls.jsonl'), JSON.stringify({ at: new Date().toISOString(), ...out }) + '\n');
