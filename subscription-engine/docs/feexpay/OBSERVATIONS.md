@@ -27,3 +27,8 @@ Constats mesurés, pas déduits de la doc. Hôte : https://api-v2.feexpay.me
 - Clé `test_…uhn` (45 car.) : 401 UNAUTHORIZED.
 - Même suffixe avec préfixe `fp_` (43 car.), à la demande d'Igor : 401 UNAUTHORIZED. Variante non conservée.
 - Conclusion provisoire : la chaîne reçue n'est pas une clé Bearer valide pour `api-v2.feexpay.me`, avec ou sans préfixe. La clé du nouveau compte n'a pas été reçue (même chaîne que l'ancien compte).
+
+## 2026-10-02 - Hypothèse d'Igor : clé de Test pré-remplie, identique sur tous les comptes
+- Constat d'Igor (dashboard, compte neuf) : la clé `test_…` n'est pas générée par l'utilisateur, elle est déjà présente, précédée d'une date (22 mars 2022), et identique d'un compte à l'autre.
+- Mesure : 401 sur `api-v2.feexpay.me`. Sur l'hôte V1 `api.feexpay.me` : 502 Bad Gateway (nginx), donc pas de réponse exploitable.
+- Lecture : cohérent avec une clé par défaut périmée ou un jeton d'un autre usage, mais non prouvé. À trancher avec le support FeexPay.
