@@ -1,0 +1,1663 @@
+{
+  "info": {
+    "name": "FeexPay API - Payin & Payout",
+    "description": "Collection Postman pour tester les endpoints Payin (RequestToPay) et Payout de FeexPay, organisée par pays et réseaux.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://api-v2.feexpay.me",
+      "type": "string"
+    },
+    {
+      "key": "fp_api_key",
+      "value": "fp_votre_api_key",
+      "type": "string"
+    },
+    {
+      "key": "shop",
+      "value": "votre_shop_id",
+      "type": "string"
+    },
+    {
+      "key": "reference",
+      "value": "votre_reference_transaction",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{fp_api_key}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Payin",
+      "item": [
+        {
+          "name": "Bénin",
+          "item": [
+            {
+              "name": "MTN BJ - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 2290167000000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/mtn",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "mtn"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "MOOV BJ - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 2290160666666\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/moov",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "moov"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CELTIIS BJ - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 2290140000000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/celtiis_bj",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "celtiis_bj"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CORIS BJ - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"otp\": \"\",\n  \"phoneNumber\": 2290166000000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/coris",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "coris"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Burkina-Faso",
+          "item": [
+            {
+              "name": "MOOV BF - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 22601670000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/moov_bf",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "moov_bf"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "ORANGE BF - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"otp\": \"\",\n  \"phoneNumber\": 2260166000000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/orange_bf",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "orange_bf"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "WAVE BF - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"otp\": \"\",\n  \"phoneNumber\": 22670000000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/wave_bf",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "wave_bf"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Mali",
+          "item": [
+            {
+              "name": "ORANGE ML - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 22374000000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/orange_ml",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "orange_ml"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "MOBICASH ML- RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": \"22366000000\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/mobicash_ml",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "mobicash_ml"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Côte d'Ivoire",
+          "item": [
+            {
+              "name": "MTN CI - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 2250507700000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/mtn_ci",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "mtn_ci"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "MOOV CI - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 2250140700000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/moov_ci",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "moov_ci"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "WAVE CI - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 2250140700000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/wave_ci",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "wave_ci"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "ORANGE CI - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 2250707700000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/orange_ci",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "orange_ci"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Sénégal",
+          "item": [
+            {
+              "name": "ORANGE SN - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 221771740000,\n  \"otp\": \"123456\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/orange_sn",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "orange_sn"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "FREE SN - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 221771740000,\n  \"return_url\": \"http://feexpay.me\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/free_sn",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "free_sn"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "WAVE SN - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 221771740000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/wave_sn",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "wave_sn"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Togo",
+          "item": [
+            {
+              "name": "TOGOCOM TG - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 22890000000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/togocom_tg",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "togocom_tg"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "MOOV TG - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 22899000000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/moov_tg",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "moov_tg"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Congo Brazzaville",
+          "item": [
+            {
+              "name": "MTN CG - RequestToPay",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"{{shop}}\",\n  \"amount\": 100,\n  \"phoneNumber\": 242676600000000\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/transactions/public/requesttopay/mtn_cg",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "transactions",
+                    "public",
+                    "requesttopay",
+                    "mtn_cg"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Payouts",
+      "item": [
+        {
+          "name": "Bénin",
+          "item": [
+            {
+              "name": "MTN BJ - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"2290167000000\",\n  \"shop\": \"{{shop}}\",\n  \"network\": \"MTN\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/transfer/global",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "transfer",
+                    "global"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "MOOV BJ - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"2290160000000\",\n  \"shop\": \"{{shop}}\",\n  \"network\": \"MOOV\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/transfer/global",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "transfer",
+                    "global"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CELTIIS BJ - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"2290140000000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/celtiis_bj",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "celtiis_bj"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Burkina-Faso",
+          "item": [
+            {
+              "name": "MOOV BF- Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"22601000000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/moov_bf",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "moov_bf"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "ORANGE BF - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"22601000000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/orange_bf",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "orange_bf"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "WAVE BF - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"22670000000\",\n  \"shop\": \"{{shop}}\",\n  \"otp\": \"\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/wave_bf",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "wave_bf"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Mali",
+          "item": [
+            {
+              "name": "ORANGE ML - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"22301000000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/orange_ml",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "orange_ml"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "MOBICASH ML- Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"22301000000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/mobicash_ml",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "mobicash_ml"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Côte d'Ivoire",
+          "item": [
+            {
+              "name": "MTN CI - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"2250507700000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/mtn_ci",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "mtn_ci"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "ORANGE CI - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"2250707700000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/orange_ci",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "orange_ci"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "MOOV CI - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"2250140700000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/moov_ci",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "moov_ci"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "WAVE CI - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"2250140700000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/wave_ci",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "wave_ci"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Togo",
+          "item": [
+            {
+              "name": "TOGOCOM TG - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"22871000000\",\n  \"shop\": \"{{shop}}\",\n  \"network\": \"TOGOCOM TG\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/togo",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "togo"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "MOOV TG - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"22899000000\",\n  \"shop\": \"{{shop}}\",\n  \"network\": \"MOOV TG\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/togo",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "togo"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Sénégal",
+          "item": [
+            {
+              "name": "ORANGE SN - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"221771740000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/orange_sn",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "orange_sn"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "FREE SN - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"221771740000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/free_sn",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "wave_sn"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "WAVE SN - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"221771740000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/wave_sn",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "wave_sn"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Congo Brazzaville",
+          "item": [
+            {
+              "name": "MTN CG - Payout",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{fp_api_key}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"phoneNumber\": \"242066000000\",\n  \"shop\": \"{{shop}}\",\n  \"motif\": \"Paiement client\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/payouts/public/mtn_cg",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "payouts",
+                    "public",
+                    "mtn_cg"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Statut Transaction",
+      "item": [
+        {
+          "name": "Statut Payin",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{fp_api_key}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/transactions/public/single/status/{{reference}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "transactions",
+                "public",
+                "single",
+                "status",
+                "{{reference}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Statut Payout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{fp_api_key}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payouts/status/public/{{reference}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "payouts",
+                "status",
+                "public",
+                "{{reference}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

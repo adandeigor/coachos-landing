@@ -16,3 +16,8 @@ Constats mesurés, pas déduits de la doc. Hôte : https://api-v2.feexpay.me
 ## Doc (PDF) - points à vérifier en test
 - Historique : `callback_info` est un objet `{order_id}` dans l'exemple, alors que la doc parle d'une chaîne libre.
 - Historique : champ `custom_id`, types `PAYMENT_API`/`PAYOUT_API`/`FEEX_LINK`/`FEEX_PAGE`, réseaux `MTN`, `MOOV`, `CELTIIS BJ`, `CORIS`...
+
+## 2026-10-02 - Second essai (curl brut, même clé `test_...`, 45 caractères)
+- Même `401 UNAUTHORIZED`. Le défaut n'est donc pas dans le script du sondage.
+- Collection Postman officielle ajoutée (`feexpay-api-rest-payin-payout.postman_collection.json`) : auth Bearer, chemins payin `mtn`, `moov`, `celtiis_bj`, `coris`, `moov_ci`... confirmés.
+- Collection : incohérence interne repérée - le payout « FREE SN » pointe vers `/wave_sn` dans son chemin détaillé (`path`) mais `free_sn` dans son `raw`. Sans effet (pas de payout).
