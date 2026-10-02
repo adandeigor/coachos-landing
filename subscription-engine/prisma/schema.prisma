@@ -1,0 +1,221 @@
+// Schéma du moteur d'abonnements. Aucune notion propre à un produit.
+// tenantId : simple colonne (valeur "default"), aucune logique multi-tenant ; elle évite seulement de
+// bloquer cette décision ouverte. Les montants sont des entiers en unités mineures
+// (EUR : centimes, XOF : francs, sans sous-unité).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Environment {
+  SANDBOX
+  LIVE
+}
+
+enum Currency {
+  EUR
+  XOF
+}
+
+enum PeriodUnit {
+  MONTH
+  YEAR
+}
+
+enum SubscriptionStatus {
+  PENDING   // créé, premier paiement non confirmé
+  ACTIVE    // payé, période en cours
+  GRACE     // échéance dépassée, accès conservé (période de grâce)
+  PAST_DUE  // en retard : accès suspendu, renouvellement encore possible
+  EXPIRED   // expiré : réactivation par un nouveau paiement
+  CANCELED  // annulé (terminal)
+}
+
+enum OrderKind {
+  INITIAL
+  RENEWAL
+}
+
+enum OrderStatus {
+  OPEN
+  PAID
+  FAILED
+  EXPIRED
+  CANCELED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESSFUL
+  FAILED
+  ABANDONED
+}
+
+enum EventSource {
+  WEBHOOK
+  STATUS_CHECK
+  RECONCILIATION
+}
+
+model Plan {
+  id          String   @id @default(uuid())
+  tenantId    String   @default("default")
+  code        String
+  name        String
+  description String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  prices        Price[]
+  subscriptions Subscription[]
+
+  @@unique([tenantId, code])
+}
+
+// Prix catalogue d'une offre pour une période (ex. 9,00 EUR / 1 MONTH).
+model Price {
+  id          String     @id @default(uuid())
+  planId      String
+  currency    Currency
+  amountMinor Int
+  periodUnit  PeriodUnit
+  periodCount Int        @default(1)
+  active      Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+
+  plan          Plan           @relation(fields: [planId], references: [id])
+  subscriptions Subscription[]
+
+  @@index([planId])
+}
+
+model Customer {
+  id          String   @id @default(uuid())
+  tenantId    String   @default("default")
+  externalRef String // identifiant opaque côté produit appelant
+  email       String
+  name        String?
+  createdAt   DateTime @default(now())
+
+  subscriptions Subscription[]
+
+  @@unique([tenantId, externalRef])
+}
+
+model Subscription {
+  id                 String             @id @default(uuid())
+  tenantId           String             @default("default")
+  customerId         String
+  planId             String
+  priceId            String
+  environment        Environment
+  status             SubscriptionStatus @default(PENDING)
+  currentPeriodStart DateTime?
+  currentPeriodEnd   DateTime?
+  graceEndsAt        DateTime?
+  expiresAt          DateTime?
+  cancelAtPeriodEnd  Boolean            @default(false)
+  canceledAt         DateTime?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  customer    Customer                 @relation(fields: [customerId], references: [id])
+  plan        Plan                     @relation(fields: [planId], references: [id])
+  price       Price                    @relation(fields: [priceId], references: [id])
+  orders      Order[]
+  transitions SubscriptionTransition[]
+
+  // Cible des clés étrangères composites : un enfant ne peut pas changer d'environnement.
+  @@unique([id, environment])
+  @@index([status, currentPeriodEnd])
+}
+
+// Commande : montant FIXÉ CÔTÉ SERVEUR. Sert de référence pour comparer le montant confirmé par le prestataire.
+model Order {
+  id             String      @id @default(uuid())
+  subscriptionId String
+  environment    Environment
+  kind           OrderKind
+  status         OrderStatus @default(OPEN)
+  // Montant réellement facturé au prestataire (ex. XOF)
+  amountMinor    Int
+  currency       Currency
+  // Prix catalogue d'origine et taux appliqué, pour la traçabilité de la conversion
+  listAmountMinor Int
+  listCurrency    Currency
+  fxRate          String? // taux figé au moment de la commande, ex. "655.957"
+  // Période couverte si la commande est payée
+  periodStart    DateTime
+  periodEnd      DateTime
+  createdAt      DateTime    @default(now())
+  paidAt         DateTime?
+
+  subscription Subscription @relation(fields: [subscriptionId, environment], references: [id, environment])
+  payments     Payment[]
+
+  @@unique([id, environment])
+  @@index([subscriptionId])
+}
+
+model Payment {
+  id                 String        @id @default(uuid())
+  orderId            String
+  environment        Environment
+  provider           String // "feexpay", "fake", ...
+  providerReference  String // reference du prestataire
+  status             PaymentStatus @default(PENDING)
+  amountMinor        Int // montant demandé
+  currency           Currency
+  verifiedAmountMinor Int? // montant confirmé par l'endpoint de statut
+  providerReason     String?
+  // Idempotence : renseigné une seule fois, lorsque le paiement a prolongé l'abonnement
+  appliedAt          DateTime?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+
+  order  Order          @relation(fields: [orderId, environment], references: [id, environment])
+  events PaymentEvent[]
+
+  // Règle 5 : une référence prestataire ne peut exister qu'une fois.
+  @@unique([provider, providerReference])
+  @@index([orderId])
+}
+
+// Journal brut de tout ce qui a été reçu ou lu auprès du prestataire (webhooks, statuts, réconciliation).
+model PaymentEvent {
+  id                String      @id @default(uuid())
+  paymentId         String?
+  environment       Environment
+  provider          String
+  providerReference String?
+  source            EventSource
+  dedupeKey         String // empreinte de l'événement : le même événement rejoué n'est traité qu'une fois
+  payload           Json
+  outcome           String? // résultat du traitement
+  receivedAt        DateTime    @default(now())
+  processedAt       DateTime?
+
+  payment Payment? @relation(fields: [paymentId], references: [id])
+
+  @@unique([provider, environment, dedupeKey])
+  @@index([providerReference])
+}
+
+// Historique des changements d'état.
+model SubscriptionTransition {
+  id             String             @id @default(uuid())
+  subscriptionId String
+  fromStatus     SubscriptionStatus
+  toStatus       SubscriptionStatus
+  reason         String
+  at             DateTime           @default(now())
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id])
+
+  @@index([subscriptionId, at])
+}
